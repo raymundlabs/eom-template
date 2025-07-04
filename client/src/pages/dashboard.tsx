@@ -163,6 +163,7 @@ export default function Dashboard() {
               </div>
 
               {/* Weekly Performance Table - Full Width */}
+              <WeeklyPerformanceModern data={dashboardData} />
             </div>
           )
         )}
