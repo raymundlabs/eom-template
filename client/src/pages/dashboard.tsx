@@ -88,15 +88,12 @@ export default function Dashboard() {
               {/* Top Metrics Grid */}
               <MetricsGrid data={dashboardData} />
 
-              {/* Main Content Grid - Experience on left, metrics and table on right */}
-              <div className="grid grid-cols-4 gap-6">
-                {/* Left Column - Overall Experience & Satisfaction */}
+              {/* Overall Experience Section - Top Left */}
+              <div className="grid grid-cols-4 gap-6 mb-6">
                 <div className="col-span-1">
                   <ExperienceSatisfaction data={dashboardData} />
                 </div>
-
-                {/* Right Columns - Metrics and Weekly Performance Table */}
-                <div className="col-span-3 space-y-6">
+                <div className="col-span-3">
                   {/* Additional Metrics Grid */}
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <Card className="shadow-lg border-0">
@@ -141,47 +138,47 @@ export default function Dashboard() {
                       </CardContent>
                     </Card>
                   </div>
-
-                  {/* Weekly Performance Table */}
-                  <WeeklyPerformanceModern data={dashboardData} />
-                  
-                  {/* Agent Attributes Card - Now under the weekly table */}
-                  <Card className="shadow-lg border-0">
-                    <CardContent className="p-4">
-                      <h3 className="text-base font-bold text-gray-900 mb-4">Agent Attributes:</h3>
-                      <div className="space-y-2">
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center space-x-2">
-                            <div className="w-2 h-2 rounded-full bg-blue-600"></div>
-                            <span className="text-sm font-medium text-gray-700">Agent was Friendly:</span>
-                          </div>
-                          <span className="text-sm font-bold text-blue-600">
-                            {dashboardData.agentFriendly || 85}% ({dashboardData.friendlyResponses || 1614} responses)
-                          </span>
-                        </div>
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center space-x-2">
-                            <div className="w-2 h-2 rounded-full bg-green-600"></div>
-                            <span className="text-sm font-medium text-gray-700">Agent Communicated Effectively:</span>
-                          </div>
-                          <span className="text-sm font-bold text-green-600">
-                            {dashboardData.agentCommunicated || 81}% ({dashboardData.communicationResponses || 1623} responses)
-                          </span>
-                        </div>
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center space-x-2">
-                            <div className="w-2 h-2 rounded-full bg-purple-600"></div>
-                            <span className="text-sm font-medium text-gray-700">Agent was Knowledgeable:</span>
-                          </div>
-                          <span className="text-sm font-bold text-purple-600">
-                            {dashboardData.agentKnowledgeable || 79}% ({dashboardData.knowledgeResponses || 1630} responses)
-                          </span>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
                 </div>
               </div>
+
+              {/* Weekly Performance Table - Full Width */}
+              <WeeklyPerformanceModern data={dashboardData} />
+              
+              {/* Agent Attributes Card - Below the weekly table */}
+              <Card className="shadow-lg border-0">
+                <CardContent className="p-4">
+                  <h3 className="text-base font-bold text-gray-900 mb-4">Agent Attributes:</h3>
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-2">
+                        <div className="w-2 h-2 rounded-full bg-blue-600"></div>
+                        <span className="text-sm font-medium text-gray-700">Agent was Friendly:</span>
+                      </div>
+                      <span className="text-sm font-bold text-blue-600">
+                        {dashboardData.agentFriendly || 85}% ({dashboardData.friendlyResponses || 1614} responses)
+                      </span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-2">
+                        <div className="w-2 h-2 rounded-full bg-green-600"></div>
+                        <span className="text-sm font-medium text-gray-700">Agent Communicated Effectively:</span>
+                      </div>
+                      <span className="text-sm font-bold text-green-600">
+                        {dashboardData.agentCommunicated || 81}% ({dashboardData.communicationResponses || 1623} responses)
+                      </span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-2">
+                        <div className="w-2 h-2 rounded-full bg-purple-600"></div>
+                        <span className="text-sm font-medium text-gray-700">Agent was Knowledgeable:</span>
+                      </div>
+                      <span className="text-sm font-bold text-purple-600">
+                        {dashboardData.agentKnowledgeable || 79}% ({dashboardData.knowledgeResponses || 1630} responses)
+                      </span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           )
         )}
