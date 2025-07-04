@@ -97,8 +97,8 @@ export default function Dashboard() {
                   <ExperienceSatisfaction data={dashboardData} />
                 </div>
 
-                {/* Right Columns - Additional Metrics */}
-                <div className="col-span-2">
+                {/* Right Columns - Additional Metrics and Weekly Table */}
+                <div className="col-span-2 space-y-6">
                   <div className="grid grid-cols-5 gap-4">
                     <Card className="shadow-lg border-0">
                       <CardContent className="p-4">
@@ -159,11 +159,11 @@ export default function Dashboard() {
                       </CardContent>
                     </Card>
                   </div>
+                  
+                  {/* Weekly Performance Table */}
+                  <WeeklyPerformanceModern data={dashboardData} />
                 </div>
               </div>
-
-              {/* Weekly Performance Table - Full Width */}
-              <WeeklyPerformanceModern data={dashboardData} />
             </div>
           )
         )}
