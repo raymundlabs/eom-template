@@ -96,32 +96,32 @@ export default function Dashboard() {
                   {/* Agent Attributes */}
                   <Card className="shadow-lg border-0 mt-6">
                     <CardContent className="p-6">
-                      <h3 className="text-lg font-bold text-gray-900 mb-4">Agent Attributes:</h3>
-                      <div className="space-y-3">
+                      <h3 className="text-sm font-bold text-gray-900 mb-3">Agent Attributes:</h3>
+                      <div className="space-y-2">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center space-x-2">
-                            <div className="w-3 h-3 rounded-full bg-blue-600"></div>
-                            <span className="text-sm font-medium text-gray-700">Agent was Friendly:</span>
+                            <div className="w-2 h-2 rounded-full bg-blue-600"></div>
+                            <span className="text-xs font-medium text-gray-700">Agent was Friendly:</span>
                           </div>
-                          <span className="text-sm font-bold text-blue-600">
+                          <span className="text-xs font-bold text-blue-600">
                             {dashboardData.agentFriendly || 85}%
                           </span>
                         </div>
                         <div className="flex items-center justify-between">
                           <div className="flex items-center space-x-2">
-                            <div className="w-3 h-3 rounded-full bg-green-600"></div>
-                            <span className="text-sm font-medium text-gray-700">Agent Communicated Effectively:</span>
+                            <div className="w-2 h-2 rounded-full bg-green-600"></div>
+                            <span className="text-xs font-medium text-gray-700">Agent Communicated Effectively:</span>
                           </div>
-                          <span className="text-sm font-bold text-green-600">
+                          <span className="text-xs font-bold text-green-600">
                             {dashboardData.agentCommunicated || 81}%
                           </span>
                         </div>
                         <div className="flex items-center justify-between">
                           <div className="flex items-center space-x-2">
-                            <div className="w-3 h-3 rounded-full bg-purple-600"></div>
-                            <span className="text-sm font-medium text-gray-700">Agent was Knowledgeable:</span>
+                            <div className="w-2 h-2 rounded-full bg-purple-600"></div>
+                            <span className="text-xs font-medium text-gray-700">Agent was Knowledgeable:</span>
                           </div>
-                          <span className="text-sm font-bold text-purple-600">
+                          <span className="text-xs font-bold text-purple-600">
                             {dashboardData.agentKnowledgeable || 79}%
                           </span>
                         </div>

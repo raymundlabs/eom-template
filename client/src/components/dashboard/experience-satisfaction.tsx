@@ -120,8 +120,8 @@ Seamless Customer Effort: With an 80% CES, customers overwhelmingly found the re
     <div className="space-y-6">
       {/* Overall Experience & Satisfaction */}
       <Card className="shadow-lg border-0 bg-cyan-50">
-        <CardContent className="p-4 text-[13px]">
-          <h3 className="text-base font-bold text-gray-900 mb-4 border-b-2 border-cyan-400 pb-1">
+        <CardContent className="p-4">
+          <h3 className="text-sm font-bold text-gray-900 mb-3 border-b-2 border-cyan-400 pb-1">
             Overall Experience & Satisfaction:
           </h3>
 
@@ -154,7 +154,7 @@ Seamless Customer Effort: With an 80% CES, customers overwhelmingly found the re
                       </div>
                     ) : (
                       <div className="flex items-start justify-between">
-                        <p className="text-sm text-gray-700 leading-relaxed flex-1">{metric.text}</p>
+                        <p className="text-xs text-gray-700 leading-relaxed flex-1">{metric.text}</p>
                         <Button
                           variant="ghost"
                           size="sm"
@@ -175,8 +175,8 @@ Seamless Customer Effort: With an 80% CES, customers overwhelmingly found the re
       {/* Wins Section */}
       <Card className="shadow-lg border-0 bg-blue-50">
         <CardContent className="p-4">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-base font-bold text-gray-900 border-b-2 border-blue-400 pb-1">Wins</h3>
+          <div className="flex items-center justify-between mb-3">
+            <h3 className="text-sm font-bold text-gray-900 border-b-2 border-blue-400 pb-1">Wins</h3>
             <Button
               variant="ghost"
               size="sm"
@@ -213,7 +213,7 @@ Seamless Customer Effort: With an 80% CES, customers overwhelmingly found the re
               {winsText.split('\n\n').map((paragraph, index) => (
                 <div key={index} className="flex items-start space-x-2">
                   <div className="w-2 h-2 rounded-full bg-blue-600 mt-2 flex-shrink-0"></div>
-                  <p className="text-sm text-gray-700 leading-relaxed">{paragraph.trim()}</p>
+                  <p className="text-xs text-gray-700 leading-relaxed">{paragraph.trim()}</p>
                 </div>
               ))}
             </div>
