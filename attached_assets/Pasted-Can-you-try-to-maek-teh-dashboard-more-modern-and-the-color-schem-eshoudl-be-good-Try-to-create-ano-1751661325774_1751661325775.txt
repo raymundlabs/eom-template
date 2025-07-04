@@ -1,0 +1,27 @@
+Can you try to maek teh dashboard more modern and the color schem eshoudl be good. Try to create another version taht weill make the weekly peformacne see better. maybe isntead of row week 1 make ti vertical and all teh kpi are the rows. so it will occuipy less space.
+
+Check CSAT knowelge is %
+Kneoge % ACX %
+COMS %
+Add friendlyness %
+
+There shoudl be a way for me to edit add add text box
+
+Overall Experience & Satisfaction Their result will be buleeted and add add design
+ACX: We achieved an 85% based on 720 responses, showing that customers strongly agree that agents are knowledgeable, friendly, and communicate effectively.
+CSAT: Our score stands at 82% based on 764 responses, indicating a vast majority of customers left satisfied or very satisfied.
+CES: We scored 80% based on 716 responses, reflecting that customers found it easy to resolve their matter.
+FCR: At 83% (based on 776 responses), more than 8 out of 10 issues were successfully resolved on the first contact.
+Perfect Scores: 71% of interactions received a perfect ACX score, demonstrating a high level of excellence in service delivery.
+
+Agennt Attritubes
+Agent was Friendly: 88% (708 responses)
+Agent Communicated Effectively: 85% (713 responses)
+Agent was Knowledgeable: 82% (717 responses)
+
+Wins
+Exceptional Agent Friendliness: Agents scored an impressive 88% for friendliness, showing a strong ability to build rapport and create positive interactions.
+Strong Overall Experience (ACX): The team achieved a high 85% ACX score, indicating consistent, high-quality service across key agent attributes.
+Effective First Contact Resolution (FCR): An 83% FCR rate demonstrates the team's efficiency and knowledge in resolving customer inquiries on the first attempt.
+High Customer Satisfaction: CSAT remains strong at 82%, reflecting the team's success in meeting and exceeding customer expectations.
+Seamless Customer Effort: With an 80% CES, customers overwhelmingly found the resolution process easy and straightforward.
