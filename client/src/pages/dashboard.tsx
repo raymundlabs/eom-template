@@ -88,16 +88,53 @@ export default function Dashboard() {
               {/* Top Metrics Grid */}
               <MetricsGrid data={dashboardData} />
 
-              {/* Main Content Grid - 3/5 and 2/5 split */}
-              <div className="grid grid-cols-5 gap-6">
-                {/* Weekly Performance Table - 3/5 width */}
-                <div className="col-span-3">
-                  <WeeklyPerformanceModern data={dashboardData} />
+              {/* Main Content Grid - Side by side layout */}
+              <div className="grid grid-cols-3 gap-6">
+                {/* Left Column - Experience & Satisfaction */}
+                <div className="col-span-1">
+                  <ExperienceSatisfaction data={dashboardData} />
                 </div>
 
-                {/* Experience & Satisfaction - 2/5 width */}
+                {/* Right Columns - Weekly Performance Table */}
                 <div className="col-span-2">
-                  <ExperienceSatisfaction data={dashboardData} />
+                  <div className="grid grid-cols-3 gap-4 mb-6">
+                    {/* Agent Attributes Card */}
+                    <Card className="shadow-lg border-0">
+                      <CardContent className="p-4">
+                        <h3 className="text-base font-bold text-gray-900 mb-4">Agent Attributes:</h3>
+                        <div className="space-y-2">
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center space-x-2">
+                              <div className="w-2 h-2 rounded-full bg-blue-600"></div>
+                              <span className="text-sm font-medium text-gray-700">Agent was Friendly:</span>
+                            </div>
+                            <span className="text-sm font-bold text-blue-600">
+                              {dashboardData.agentFriendly || 85}% ({dashboardData.friendlyResponses || 1614} responses)
+                            </span>
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center space-x-2">
+                              <div className="w-2 h-2 rounded-full bg-green-600"></div>
+                              <span className="text-sm font-medium text-gray-700">Agent Communicated Effectively:</span>
+                            </div>
+                            <span className="text-sm font-bold text-green-600">
+                              {dashboardData.agentCommunicated || 81}% ({dashboardData.communicationResponses || 1623} responses)
+                            </span>
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center space-x-2">
+                              <div className="w-2 h-2 rounded-full bg-purple-600"></div>
+                              <span className="text-sm font-medium text-gray-700">Agent was Knowledgeable:</span>
+                            </div>
+                            <span className="text-sm font-bold text-purple-600">
+                              {dashboardData.agentKnowledgeable || 79}% ({dashboardData.knowledgeResponses || 1630} responses)
+                            </span>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+                  <WeeklyPerformanceModern data={dashboardData} />
                 </div>
               </div>
             </div>

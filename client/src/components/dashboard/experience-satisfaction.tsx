@@ -173,27 +173,7 @@ Seamless Customer Effort: With an 80% CES, customers overwhelmingly found the re
         </CardContent>
       </Card>
 
-      {/* Agent Attributes */}
-      <Card className="shadow-lg border-0 bg-green-50">
-        <CardContent className="p-4">
-          <h3 className="text-base font-bold text-gray-900 mb-4 border-b-2 border-green-400 pb-1">
-            Agent Attributes:
-          </h3>
-          <div className="space-y-2">
-            {agentAttributes.map((attr, index) => (
-              <div key={index} className="flex items-center justify-between">
-                <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 rounded-full bg-green-600"></div>
-                  <span className="text-sm font-medium text-gray-700">{attr.title}:</span>
-                </div>
-                <span className={`text-sm font-bold ${attr.color}`}>
-                  {attr.percentage}% ({attr.responses} responses)
-                </span>
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
+
 
       {/* Wins Section */}
       <Card className="shadow-lg border-0 bg-blue-50">
