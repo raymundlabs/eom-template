@@ -97,8 +97,10 @@ export default function Dashboard() {
 
                 {/* Right Columns - Weekly Performance Table */}
                 <div className="col-span-2">
-                  <div className="grid grid-cols-3 gap-4 mb-6">
-                    {/* Agent Attributes Card */}
+                  <WeeklyPerformanceModern data={dashboardData} />
+                  
+                  {/* Agent Attributes Card - Now under the weekly table */}
+                  <div className="mt-6">
                     <Card className="shadow-lg border-0">
                       <CardContent className="p-4">
                         <h3 className="text-base font-bold text-gray-900 mb-4">Agent Attributes:</h3>
@@ -134,7 +136,6 @@ export default function Dashboard() {
                       </CardContent>
                     </Card>
                   </div>
-                  <WeeklyPerformanceModern data={dashboardData} />
                 </div>
               </div>
             </div>
