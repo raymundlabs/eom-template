@@ -11,7 +11,7 @@ export function MetricsGrid({ data }: MetricsGridProps) {
   return (
     <>
       {/* Key Metrics Grid - PPT Compatible Layout */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
         {/* Handle Time Card */}
         <Card className="shadow-lg border-0 bg-gradient-to-br from-blue-50 to-blue-100">
           <CardContent className="p-4">
@@ -44,13 +44,30 @@ export function MetricsGrid({ data }: MetricsGridProps) {
             <div className="flex items-center justify-between">
               <div>
                 <div className="text-xs font-medium text-gray-700 mb-1">CSAT (%)</div>
-                <div className="text-xs text-gray-500">Knowledge</div>
               </div>
               <CircularProgress 
                 value={data.csatScore} 
                 maxValue={5} 
                 color="var(--primary)"
                 label={`${((data.csatScore / 5) * 100).toFixed(1)}%`}
+                size={60}
+              />
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Knowledge Score */}
+        <Card className="shadow-lg border-0 bg-gradient-to-br from-green-50 to-green-100">
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <div className="text-xs font-medium text-gray-700 mb-1">Knowledge (%)</div>
+              </div>
+              <CircularProgress 
+                value={data.agentKnowledgeable || 0} 
+                maxValue={100} 
+                color="var(--success)"
+                label={`${data.agentKnowledgeable || 0}%`}
                 size={60}
               />
             </div>
@@ -105,6 +122,24 @@ export function MetricsGrid({ data }: MetricsGridProps) {
                 maxValue={100} 
                 color="var(--purple)"
                 label={`${data.agentFriendly || 0}%`}
+                size={60}
+              />
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* FCR Score */}
+        <Card className="shadow-lg border-0 bg-gradient-to-br from-orange-50 to-orange-100">
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <div className="text-xs font-medium text-gray-700 mb-1">FCR (%)</div>
+              </div>
+              <CircularProgress 
+                value={data.fcrScore || 0} 
+                maxValue={100} 
+                color="var(--orange)"
+                label={`${data.fcrScore || 0}%`}
                 size={60}
               />
             </div>

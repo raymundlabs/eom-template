@@ -117,7 +117,7 @@ High Customer Satisfaction: CSAT remains strong at 82%, reflecting the team's su
 Seamless Customer Effort: With an 80% CES, customers overwhelmingly found the resolution process easy and straightforward.`;
 
   return (
-    <div className="space-y-6">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
       {/* Overall Experience & Satisfaction */}
       <Card className="shadow-lg border-0 bg-cyan-50">
         <CardContent className="p-4">

@@ -75,7 +75,7 @@ export default function Dashboard() {
           </div>
         ) : (
           dashboardData && (
-            <div className="max-w-full mx-auto space-y-6" style={{ width: "1024px" }}>
+            <div className="max-w-full mx-auto space-y-6" style={{ width: "1400px" }}>
               {/* Brand Header */}
               <div className="text-left mb-6">
                 <h1 className="text-4xl font-bold text-gray-900 mb-2">{dashboardData.brandName}</h1>
@@ -88,18 +88,11 @@ export default function Dashboard() {
               {/* Top Metrics Grid */}
               <MetricsGrid data={dashboardData} />
 
-              {/* Main Content Grid */}
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                {/* Left Column - Experience & Satisfaction */}
-                <div className="lg:col-span-2">
-                  <ExperienceSatisfaction data={dashboardData} />
-                </div>
+              {/* Weekly Performance Table - Full Width */}
+              <WeeklyPerformanceModern data={dashboardData} />
 
-                {/* Right Column - Weekly Table */}
-                <div className="lg:col-span-1">
-                  <WeeklyPerformanceModern data={dashboardData} />
-                </div>
-              </div>
+              {/* Experience & Satisfaction - Full Width */}
+              <ExperienceSatisfaction data={dashboardData} />
             </div>
           )
         )}
