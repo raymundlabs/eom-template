@@ -65,7 +65,8 @@ export default function Dashboard() {
                     Comprehensive KPI Data Input
                   </h2>
                   <p className="text-gray-600 mt-1">
-                    Enter your call center performance metrics, satisfaction scores, and weekly trends
+                    Enter your call center performance metrics, satisfaction
+                    scores, and weekly trends
                   </p>
                 </div>
                 <KpiForm onDataUpdate={handleDataUpdate} />
@@ -77,7 +78,9 @@ export default function Dashboard() {
             <div className="max-w-full mx-auto space-y-6">
               {/* Brand Header */}
               <div className="text-left mb-6">
-                <h1 className="text-4xl font-bold text-gray-900 mb-2">{dashboardData.brandName}</h1>
+                <h1 className="text-4xl font-bold text-gray-900 mb-2">
+                  {dashboardData.brandName}
+                </h1>
                 <div className="flex items-center space-x-6 text-sm text-gray-600">
                   <span>COLIBRI TARGET: 0:10:05 105.00%</span>
                   <span>COLIBRI AHT: 0:09:56 103.52%</span>
@@ -103,7 +106,8 @@ export default function Dashboard() {
                           PRESENTED
                         </div>
                         <div className="text-xl font-bold text-gray-900">
-                          {dashboardData.callsPresented?.toLocaleString() || "3,841"}
+                          {dashboardData.callsPresented?.toLocaleString() ||
+                            "3,841"}
                         </div>
                       </CardContent>
                     </Card>
@@ -114,7 +118,8 @@ export default function Dashboard() {
                           ACCEPTED
                         </div>
                         <div className="text-xl font-bold text-gray-900">
-                          {dashboardData.callsAccepted?.toLocaleString() || "29,132"}
+                          {dashboardData.callsAccepted?.toLocaleString() ||
+                            "29,132"}
                         </div>
                       </CardContent>
                     </Card>
@@ -134,7 +139,9 @@ export default function Dashboard() {
                           ATTENDANCE
                         </div>
                         <div className="text-xl font-bold text-gray-900">
-                          {dashboardData.attendance ? `${dashboardData.attendance}%` : "89.07%"}
+                          {dashboardData.attendance
+                            ? `${dashboardData.attendance}%`
+                            : "89.07%"}
                         </div>
                       </CardContent>
                     </Card>
@@ -145,7 +152,9 @@ export default function Dashboard() {
                           SHRINKAGE
                         </div>
                         <div className="text-xl font-bold text-gray-900">
-                          {dashboardData.shrinkage ? `${dashboardData.shrinkage}%` : "14.58%"}
+                          {dashboardData.shrinkage
+                            ? `${dashboardData.shrinkage}%`
+                            : "14.58%"}
                         </div>
                       </CardContent>
                     </Card>
@@ -154,7 +163,6 @@ export default function Dashboard() {
               </div>
 
               {/* Weekly Performance Table - Full Width */}
-              <WeeklyPerformanceModern data={dashboardData} />
             </div>
           )
         )}

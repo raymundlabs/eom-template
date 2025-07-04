@@ -168,63 +168,6 @@ export function MetricsGrid({ data }: MetricsGridProps) {
       </div>
 
       {/* Operational Metrics - PPT Compatible */}
-      <div
-        className="grid grid-cols-2 md:grid-cols-8
-        gap-4"
-      >
-        <Card className="shadow-lg border-0">
-          <CardContent className="p-4">
-            <div className="text-xs font-medium text-gray-600 mb-2 border-b-2 border-purple pb-2">
-              PRESENTED
-            </div>
-            <div className="text-xl font-bold text-gray-900">
-              {data.callsPresented?.toLocaleString() || "0"}
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="shadow-lg border-0">
-          <CardContent className="p-4">
-            <div className="text-xs font-medium text-gray-600 mb-2 border-b-2 border-blue pb-2">
-              ACCEPTED
-            </div>
-            <div className="text-xl font-bold text-gray-900">
-              {data.callsAccepted?.toLocaleString() || "0"}
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="shadow-lg border-0">
-          <CardContent className="p-4">
-            <div className="text-xs font-medium text-gray-600 mb-2 border-b-2 border-teal pb-2">
-              ADHERENCE
-            </div>
-            <div className="text-xl font-bold text-gray-900">-</div>
-          </CardContent>
-        </Card>
-
-        <Card className="shadow-lg border-0">
-          <CardContent className="p-4">
-            <div className="text-xs font-medium text-gray-600 mb-2 border-b-2 border-success pb-2">
-              ATTENDANCE
-            </div>
-            <div className="text-xl font-bold text-gray-900">
-              {data.attendance ? `${data.attendance}%` : "-"}
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="shadow-lg border-0">
-          <CardContent className="p-4">
-            <div className="text-xs font-medium text-gray-600 mb-2 border-b-2 border-pink pb-2">
-              SHRINKAGE
-            </div>
-            <div className="text-xl font-bold text-gray-900">
-              {data.shrinkage ? `${data.shrinkage}%` : "-"}
-            </div>
-          </CardContent>
-        </Card>
-      </div>
     </>
   );
 }
