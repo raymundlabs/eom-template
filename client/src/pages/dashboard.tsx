@@ -88,11 +88,18 @@ export default function Dashboard() {
               {/* Top Metrics Grid */}
               <MetricsGrid data={dashboardData} />
 
-              {/* Weekly Performance Table - Full Width */}
-              <WeeklyPerformanceModern data={dashboardData} />
+              {/* Main Content Grid - 3/5 and 2/5 split */}
+              <div className="grid grid-cols-5 gap-6">
+                {/* Weekly Performance Table - 3/5 width */}
+                <div className="col-span-3">
+                  <WeeklyPerformanceModern data={dashboardData} />
+                </div>
 
-              {/* Experience & Satisfaction - Full Width */}
-              <ExperienceSatisfaction data={dashboardData} />
+                {/* Experience & Satisfaction - 2/5 width */}
+                <div className="col-span-2">
+                  <ExperienceSatisfaction data={dashboardData} />
+                </div>
+              </div>
             </div>
           )
         )}

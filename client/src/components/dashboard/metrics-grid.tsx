@@ -11,7 +11,7 @@ export function MetricsGrid({ data }: MetricsGridProps) {
   return (
     <>
       {/* Key Metrics Grid - PPT Compatible Layout */}
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4">
         {/* Handle Time Card */}
         <Card className="shadow-lg border-0 bg-gradient-to-br from-blue-50 to-blue-100">
           <CardContent className="p-4">
@@ -19,9 +19,13 @@ export function MetricsGrid({ data }: MetricsGridProps) {
               <div className="w-6 h-6 bg-primary rounded-lg flex items-center justify-center">
                 <Clock className="w-3 h-3 text-white" />
               </div>
-              <div className="text-xs font-medium text-gray-700">AVG HANDLE TIME</div>
+              <div className="text-xs font-medium text-gray-700">
+                AVG HANDLE TIME
+              </div>
             </div>
-            <div className="text-xl font-bold text-gray-900">{data.avgHandleTime}</div>
+            <div className="text-xl font-bold text-gray-900">
+              {data.avgHandleTime}
+            </div>
           </CardContent>
         </Card>
 
@@ -32,9 +36,13 @@ export function MetricsGrid({ data }: MetricsGridProps) {
               <div className="w-6 h-6 bg-success rounded-lg flex items-center justify-center">
                 <Phone className="w-3 h-3 text-white" />
               </div>
-              <div className="text-xs font-medium text-gray-700">AVG HOLD TIME</div>
+              <div className="text-xs font-medium text-gray-700">
+                AVG HOLD TIME
+              </div>
             </div>
-            <div className="text-xl font-bold text-gray-900">{data.avgHoldTime}</div>
+            <div className="text-xl font-bold text-gray-900">
+              {data.avgHoldTime}
+            </div>
           </CardContent>
         </Card>
 
@@ -43,11 +51,13 @@ export function MetricsGrid({ data }: MetricsGridProps) {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <div className="text-xs font-medium text-gray-700 mb-1">CSAT (%)</div>
+                <div className="text-xs font-medium text-gray-700 mb-1">
+                  CSAT (%)
+                </div>
               </div>
-              <CircularProgress 
-                value={data.csatScore} 
-                maxValue={5} 
+              <CircularProgress
+                value={data.csatScore}
+                maxValue={5}
                 color="var(--primary)"
                 label={`${((data.csatScore / 5) * 100).toFixed(1)}%`}
                 size={60}
@@ -61,11 +71,13 @@ export function MetricsGrid({ data }: MetricsGridProps) {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <div className="text-xs font-medium text-gray-700 mb-1">Knowledge (%)</div>
+                <div className="text-xs font-medium text-gray-700 mb-1">
+                  Knowledge (%)
+                </div>
               </div>
-              <CircularProgress 
-                value={data.agentKnowledgeable || 0} 
-                maxValue={100} 
+              <CircularProgress
+                value={data.agentKnowledgeable || 0}
+                maxValue={100}
                 color="var(--success)"
                 label={`${data.agentKnowledgeable || 0}%`}
                 size={60}
@@ -79,11 +91,13 @@ export function MetricsGrid({ data }: MetricsGridProps) {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <div className="text-xs font-medium text-gray-700 mb-1">ACX (%)</div>
+                <div className="text-xs font-medium text-gray-700 mb-1">
+                  ACX (%)
+                </div>
               </div>
-              <CircularProgress 
-                value={data.acxScore} 
-                maxValue={100} 
+              <CircularProgress
+                value={data.acxScore}
+                maxValue={100}
                 color="var(--danger)"
                 label={`${data.acxScore}%`}
                 size={60}
@@ -97,11 +111,13 @@ export function MetricsGrid({ data }: MetricsGridProps) {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <div className="text-xs font-medium text-gray-700 mb-1">COMM (%)</div>
+                <div className="text-xs font-medium text-gray-700 mb-1">
+                  COMM (%)
+                </div>
               </div>
-              <CircularProgress 
-                value={data.agentCommunicated || 0} 
-                maxValue={100} 
+              <CircularProgress
+                value={data.agentCommunicated || 0}
+                maxValue={100}
                 color="var(--warning)"
                 label={`${data.agentCommunicated || 0}%`}
                 size={60}
@@ -115,11 +131,13 @@ export function MetricsGrid({ data }: MetricsGridProps) {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <div className="text-xs font-medium text-gray-700 mb-1">Friendliness (%)</div>
+                <div className="text-xs font-medium text-gray-700 mb-1">
+                  Friendliness (%)
+                </div>
               </div>
-              <CircularProgress 
-                value={data.agentFriendly || 0} 
-                maxValue={100} 
+              <CircularProgress
+                value={data.agentFriendly || 0}
+                maxValue={100}
                 color="var(--purple)"
                 label={`${data.agentFriendly || 0}%`}
                 size={60}
@@ -133,11 +151,13 @@ export function MetricsGrid({ data }: MetricsGridProps) {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <div className="text-xs font-medium text-gray-700 mb-1">FCR (%)</div>
+                <div className="text-xs font-medium text-gray-700 mb-1">
+                  FCR (%)
+                </div>
               </div>
-              <CircularProgress 
-                value={data.fcrScore || 0} 
-                maxValue={100} 
+              <CircularProgress
+                value={data.fcrScore || 0}
+                maxValue={100}
                 color="var(--orange)"
                 label={`${data.fcrScore || 0}%`}
                 size={60}
