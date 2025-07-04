@@ -75,11 +75,11 @@ export default function Dashboard() {
           </div>
         ) : (
           dashboardData && (
-            <div className="max-w-full mx-auto space-y-6" style={{ width: "1400px" }}>
+            <div className="max-w-full mx-auto space-y-6">
               {/* Brand Header */}
               <div className="text-left mb-6">
                 <h1 className="text-4xl font-bold text-gray-900 mb-2">{dashboardData.brandName}</h1>
-                <div className="flex items-center space-x-6 text-xs text-gray-600">
+                <div className="flex items-center space-x-6 text-sm text-gray-600">
                   <span>COLIBRI TARGET: 0:10:05 105.00%</span>
                   <span>COLIBRI AHT: 0:09:56 103.52%</span>
                 </div>
@@ -88,45 +88,42 @@ export default function Dashboard() {
               {/* Top Metrics Grid */}
               <MetricsGrid data={dashboardData} />
 
-              {/* Main Content Grid - Text Left, Visuals Right */}
-              <div className="grid grid-cols-2 gap-6">
-                {/* Left Column - Text Content */}
-                <div className="space-y-6">
-                  {/* Overall Experience & Satisfaction */}
+              {/* Main Content Grid - Experience on left, Table on right */}
+              <div className="grid grid-cols-12 gap-6">
+                {/* Left Column - Overall Experience & Satisfaction */}
+                <div className="col-span-5">
                   <ExperienceSatisfaction data={dashboardData} />
-                  
-                  {/* Agent Attributes - Text Based */}
-                  <Card className="shadow-lg border-0 bg-green-50">
-                    <CardContent className="p-4">
-                      <h3 className="text-base font-bold text-gray-900 mb-4 border-b-2 border-green-400 pb-1">
-                        Agent Attributes:
-                      </h3>
-                      <div className="space-y-2">
+
+                  {/* Agent Attributes */}
+                  <Card className="shadow-lg border-0 mt-6">
+                    <CardContent className="p-6">
+                      <h3 className="text-lg font-bold text-gray-900 mb-4">Agent Attributes:</h3>
+                      <div className="space-y-3">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center space-x-2">
-                            <div className="w-2 h-2 rounded-full bg-blue-600"></div>
+                            <div className="w-3 h-3 rounded-full bg-blue-600"></div>
                             <span className="text-sm font-medium text-gray-700">Agent was Friendly:</span>
                           </div>
                           <span className="text-sm font-bold text-blue-600">
-                            {dashboardData.agentFriendly || 85}% ({dashboardData.friendlyResponses || 1614} responses)
+                            {dashboardData.agentFriendly || 85}%
                           </span>
                         </div>
                         <div className="flex items-center justify-between">
                           <div className="flex items-center space-x-2">
-                            <div className="w-2 h-2 rounded-full bg-green-600"></div>
+                            <div className="w-3 h-3 rounded-full bg-green-600"></div>
                             <span className="text-sm font-medium text-gray-700">Agent Communicated Effectively:</span>
                           </div>
                           <span className="text-sm font-bold text-green-600">
-                            {dashboardData.agentCommunicated || 81}% ({dashboardData.communicationResponses || 1623} responses)
+                            {dashboardData.agentCommunicated || 81}%
                           </span>
                         </div>
                         <div className="flex items-center justify-between">
                           <div className="flex items-center space-x-2">
-                            <div className="w-2 h-2 rounded-full bg-purple-600"></div>
+                            <div className="w-3 h-3 rounded-full bg-purple-600"></div>
                             <span className="text-sm font-medium text-gray-700">Agent was Knowledgeable:</span>
                           </div>
                           <span className="text-sm font-bold text-purple-600">
-                            {dashboardData.agentKnowledgeable || 79}% ({dashboardData.knowledgeResponses || 1630} responses)
+                            {dashboardData.agentKnowledgeable || 79}%
                           </span>
                         </div>
                       </div>
@@ -134,104 +131,11 @@ export default function Dashboard() {
                   </Card>
                 </div>
 
-                {/* Right Column - Visual Elements */}
-                <div className="space-y-6">
-                  {/* Additional Metrics Grid */}
-                  <div className="grid grid-cols-2 gap-4">
-                    <Card className="shadow-lg border-0">
-                      <CardContent className="p-4">
-                        <div className="text-xs font-medium text-gray-600 mb-2 border-b-2 border-purple pb-2">
-                          PRESENTED
-                        </div>
-                        <div className="text-xl font-bold text-gray-900">
-                          {dashboardData.callsPresented?.toLocaleString() || "3,841"}
-                        </div>
-                      </CardContent>
-                    </Card>
-
-                    <Card className="shadow-lg border-0">
-                      <CardContent className="p-4">
-                        <div className="text-xs font-medium text-gray-600 mb-2 border-b-2 border-blue pb-2">
-                          ACCEPTED
-                        </div>
-                        <div className="text-xl font-bold text-gray-900">
-                          {dashboardData.callsAccepted?.toLocaleString() || "29,132"}
-                        </div>
-                      </CardContent>
-                    </Card>
-
-                    <Card className="shadow-lg border-0">
-                      <CardContent className="p-4">
-                        <div className="text-xs font-medium text-gray-600 mb-2 border-b-2 border-teal pb-2">
-                          ADHERENCE
-                        </div>
-                        <div className="text-xl font-bold text-gray-900">-</div>
-                      </CardContent>
-                    </Card>
-
-                    <Card className="shadow-lg border-0">
-                      <CardContent className="p-4">
-                        <div className="text-xs font-medium text-gray-600 mb-2 border-b-2 border-success pb-2">
-                          ATTENDANCE
-                        </div>
-                        <div className="text-xl font-bold text-gray-900">
-                          {dashboardData.attendance ? `${dashboardData.attendance}%` : "89.07%"}
-                        </div>
-                      </CardContent>
-                    </Card>
-
-                    <Card className="shadow-lg border-0">
-                      <CardContent className="p-4">
-                        <div className="text-xs font-medium text-gray-600 mb-2 border-b-2 border-orange pb-2">
-                          SHRINKAGE
-                        </div>
-                        <div className="text-xl font-bold text-gray-900">
-                          {dashboardData.shrinkage ? `${dashboardData.shrinkage}%` : "14.58%"}
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </div>
-                  
-                  {/* Weekly Performance Table */}
+                {/* Right Column - Weekly Performance Table */}
+                <div className="col-span-7">
                   <WeeklyPerformanceModern data={dashboardData} />
                 </div>
               </div>
-              
-              {/* Agent Attributes Card - Below the weekly table */}
-              <Card className="shadow-lg border-0">
-                <CardContent className="p-4">
-                  <h3 className="text-base font-bold text-gray-900 mb-4">Agent Attributes:</h3>
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-2">
-                        <div className="w-2 h-2 rounded-full bg-blue-600"></div>
-                        <span className="text-sm font-medium text-gray-700">Agent was Friendly:</span>
-                      </div>
-                      <span className="text-sm font-bold text-blue-600">
-                        {dashboardData.agentFriendly || 85}% ({dashboardData.friendlyResponses || 1614} responses)
-                      </span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-2">
-                        <div className="w-2 h-2 rounded-full bg-green-600"></div>
-                        <span className="text-sm font-medium text-gray-700">Agent Communicated Effectively:</span>
-                      </div>
-                      <span className="text-sm font-bold text-green-600">
-                        {dashboardData.agentCommunicated || 81}% ({dashboardData.communicationResponses || 1623} responses)
-                      </span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-2">
-                        <div className="w-2 h-2 rounded-full bg-purple-600"></div>
-                        <span className="text-sm font-medium text-gray-700">Agent was Knowledgeable:</span>
-                      </div>
-                      <span className="text-sm font-bold text-purple-600">
-                        {dashboardData.agentKnowledgeable || 79}% ({dashboardData.knowledgeResponses || 1630} responses)
-                      </span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
             </div>
           )
         )}
