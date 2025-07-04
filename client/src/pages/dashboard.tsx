@@ -87,54 +87,74 @@ export default function Dashboard() {
               {/* Top Metrics Grid */}
               <MetricsGrid data={dashboardData} />
 
-              {/* Main Content Grid - Experience on left, Table on right */}
-              <div className="grid grid-cols-12 gap-6">
-                {/* Left Column - Overall Experience & Satisfaction */}
-                <div className="col-span-5">
+              {/* Middle Section - Experience Left, Metrics Right */}
+              <div className="grid grid-cols-3 gap-6 mb-6">
+                {/* Left Column - Text Content */}
+                <div className="col-span-1">
                   <ExperienceSatisfaction data={dashboardData} />
-
-                  {/* Agent Attributes */}
-                  <Card className="shadow-lg border-0 mt-6">
-                    <CardContent className="p-6">
-                      <h3 className="text-sm font-bold text-gray-900 mb-3">Agent Attributes:</h3>
-                      <div className="space-y-2">
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center space-x-2">
-                            <div className="w-2 h-2 rounded-full bg-blue-600"></div>
-                            <span className="text-xs font-medium text-gray-700">Agent was Friendly:</span>
-                          </div>
-                          <span className="text-xs font-bold text-blue-600">
-                            {dashboardData.agentFriendly || 85}%
-                          </span>
-                        </div>
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center space-x-2">
-                            <div className="w-2 h-2 rounded-full bg-green-600"></div>
-                            <span className="text-xs font-medium text-gray-700">Agent Communicated Effectively:</span>
-                          </div>
-                          <span className="text-xs font-bold text-green-600">
-                            {dashboardData.agentCommunicated || 81}%
-                          </span>
-                        </div>
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center space-x-2">
-                            <div className="w-2 h-2 rounded-full bg-purple-600"></div>
-                            <span className="text-xs font-medium text-gray-700">Agent was Knowledgeable:</span>
-                          </div>
-                          <span className="text-xs font-bold text-purple-600">
-                            {dashboardData.agentKnowledgeable || 79}%
-                          </span>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
                 </div>
 
-                {/* Right Column - Weekly Performance Table */}
-                <div className="col-span-7">
-                  <WeeklyPerformanceModern data={dashboardData} />
+                {/* Right Columns - Additional Metrics */}
+                <div className="col-span-2">
+                  <div className="grid grid-cols-5 gap-4">
+                    <Card className="shadow-lg border-0">
+                      <CardContent className="p-4">
+                        <div className="text-xs font-medium text-gray-600 mb-2 border-b-2 border-purple-300 pb-2">
+                          PRESENTED
+                        </div>
+                        <div className="text-xl font-bold text-gray-900">
+                          {dashboardData.callsPresented?.toLocaleString() || "3,841"}
+                        </div>
+                      </CardContent>
+                    </Card>
+
+                    <Card className="shadow-lg border-0">
+                      <CardContent className="p-4">
+                        <div className="text-xs font-medium text-gray-600 mb-2 border-b-2 border-blue-300 pb-2">
+                          ACCEPTED
+                        </div>
+                        <div className="text-xl font-bold text-gray-900">
+                          {dashboardData.callsAccepted?.toLocaleString() || "29,132"}
+                        </div>
+                      </CardContent>
+                    </Card>
+
+                    <Card className="shadow-lg border-0">
+                      <CardContent className="p-4">
+                        <div className="text-xs font-medium text-gray-600 mb-2 border-b-2 border-teal-300 pb-2">
+                          ADHERENCE
+                        </div>
+                        <div className="text-xl font-bold text-gray-900">-</div>
+                      </CardContent>
+                    </Card>
+
+                    <Card className="shadow-lg border-0">
+                      <CardContent className="p-4">
+                        <div className="text-xs font-medium text-gray-600 mb-2 border-b-2 border-green-300 pb-2">
+                          ATTENDANCE
+                        </div>
+                        <div className="text-xl font-bold text-gray-900">
+                          {dashboardData.attendance ? `${dashboardData.attendance}%` : "89.07%"}
+                        </div>
+                      </CardContent>
+                    </Card>
+
+                    <Card className="shadow-lg border-0">
+                      <CardContent className="p-4">
+                        <div className="text-xs font-medium text-gray-600 mb-2 border-b-2 border-orange-300 pb-2">
+                          SHRINKAGE
+                        </div>
+                        <div className="text-xl font-bold text-gray-900">
+                          {dashboardData.shrinkage ? `${dashboardData.shrinkage}%` : "14.58%"}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
                 </div>
               </div>
+
+              {/* Weekly Performance Table - Full Width */}
+              <WeeklyPerformanceModern data={dashboardData} />
             </div>
           )
         )}

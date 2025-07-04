@@ -10,8 +10,8 @@ export function WeeklyTable({ data }: WeeklyTableProps) {
 
   return (
     <Card>
-      <CardContent className="p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">
+      <CardContent className="p-4">
+        <h3 className="text-xs font-semibold text-gray-900 mb-4">
           Weekly Performance Trends
         </h3>
         <p className="text-sm text-gray-600 mb-6">
@@ -22,23 +22,48 @@ export function WeeklyTable({ data }: WeeklyTableProps) {
           <table className="w-full">
             <thead>
               <tr className="border-b border-gray-200">
-                <th className="text-left py-3 px-4 font-medium text-gray-700">Period</th>
-                <th className="text-left py-3 px-4 font-medium text-gray-700">Presented</th>
-                <th className="text-left py-3 px-4 font-medium text-gray-700">Accepted</th>
-                <th className="text-left py-3 px-4 font-medium text-gray-700">AHT</th>
-                <th className="text-left py-3 px-4 font-medium text-gray-700">Hold</th>
-                <th className="text-left py-3 px-4 font-medium text-gray-700">Quality</th>
-                <th className="text-left py-3 px-4 font-medium text-gray-700">CSAT</th>
-                <th className="text-left py-3 px-4 font-medium text-gray-700">COMM</th>
-                <th className="text-left py-3 px-4 font-medium text-gray-700">Knowledge</th>
-                <th className="text-left py-3 px-4 font-medium text-gray-700">ACX</th>
-                <th className="text-left py-3 px-4 font-medium text-gray-700">Adherence</th>
+                <th className="text-left py-3 px-4 font-medium text-gray-700">
+                  Period
+                </th>
+                <th className="text-left py-3 px-4 font-medium text-gray-700">
+                  Presented
+                </th>
+                <th className="text-left py-3 px-4 font-medium text-gray-700">
+                  Accepted
+                </th>
+                <th className="text-left py-3 px-4 font-medium text-gray-700">
+                  AHT
+                </th>
+                <th className="text-left py-3 px-4 font-medium text-gray-700">
+                  Hold
+                </th>
+                <th className="text-left py-3 px-4 font-medium text-gray-700">
+                  Quality
+                </th>
+                <th className="text-left py-3 px-4 font-medium text-gray-700">
+                  CSAT
+                </th>
+                <th className="text-left py-3 px-4 font-medium text-gray-700">
+                  COMM
+                </th>
+                <th className="text-left py-3 px-4 font-medium text-gray-700">
+                  Knowledge
+                </th>
+                <th className="text-left py-3 px-4 font-medium text-gray-700">
+                  ACX
+                </th>
+                <th className="text-left py-3 px-4 font-medium text-gray-700">
+                  Adherence
+                </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
               {weeklyData.length > 0 ? (
                 weeklyData.map((week, index) => (
-                  <tr key={index} className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}>
+                  <tr
+                    key={index}
+                    className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}
+                  >
                     <td className="py-3 px-4 font-medium">Week {week.week}</td>
                     <td className="py-3 px-4">{week.presented}</td>
                     <td className="py-3 px-4">{week.accepted}</td>

@@ -168,7 +168,10 @@ export function MetricsGrid({ data }: MetricsGridProps) {
       </div>
 
       {/* Operational Metrics - PPT Compatible */}
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+      <div
+        className="grid grid-cols-2 md:grid-cols-8
+        gap-4"
+      >
         <Card className="shadow-lg border-0">
           <CardContent className="p-4">
             <div className="text-xs font-medium text-gray-600 mb-2 border-b-2 border-purple pb-2">
