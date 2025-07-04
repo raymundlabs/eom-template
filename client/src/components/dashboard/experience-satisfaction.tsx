@@ -120,7 +120,7 @@ Seamless Customer Effort: With an 80% CES, customers overwhelmingly found the re
     <div className="space-y-6">
       {/* Overall Experience & Satisfaction */}
       <Card className="shadow-lg border-0 bg-cyan-50">
-        <CardContent className="p-4">
+        <CardContent className="p-4 text-[13px]">
           <h3 className="text-base font-bold text-gray-900 mb-4 border-b-2 border-cyan-400 pb-1">
             Overall Experience & Satisfaction:
           </h3>
@@ -172,9 +172,6 @@ Seamless Customer Effort: With an 80% CES, customers overwhelmingly found the re
           </div>
         </CardContent>
       </Card>
-
-
-
       {/* Wins Section */}
       <Card className="shadow-lg border-0 bg-blue-50">
         <CardContent className="p-4">
