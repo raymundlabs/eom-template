@@ -29,7 +29,7 @@ export function WeeklyPerformanceModern({ data }: WeeklyPerformanceModernProps) 
                 {weeklyData.map((week) => {
                   const dateRange = formatDate(week.week);
                   return (
-                    <th key={week.week} className="text-center py-2 px-3 font-semibold text-gray-700">
+                    <th key={week.week} className="text-center py-1 px-2 font-semibold text-gray-700">
                       {dateRange.from}
                     </th>
                   );
@@ -41,7 +41,7 @@ export function WeeklyPerformanceModern({ data }: WeeklyPerformanceModernProps) 
                 {weeklyData.map((week) => {
                   const dateRange = formatDate(week.week);
                   return (
-                    <th key={week.week} className="text-center py-2 px-3 font-semibold text-gray-700">
+                    <th key={week.week} className="text-center py-1 px-2 font-semibold text-gray-700">
                       {dateRange.to}
                     </th>
                   );
@@ -51,7 +51,7 @@ export function WeeklyPerformanceModern({ data }: WeeklyPerformanceModernProps) 
               <tr className="bg-blue-600 text-white">
                 <th className="text-left py-2 px-3 font-bold">KPI</th>
                 {weeklyData.map((week) => (
-                  <th key={week.week} className="text-center py-2 px-3 font-bold">
+                  <th key={week.week} className="text-center py-1 px-2 font-bold">
                     Week {week.week}
                   </th>
                 ))}
@@ -62,23 +62,23 @@ export function WeeklyPerformanceModern({ data }: WeeklyPerformanceModernProps) 
               <tr className="hover:bg-gray-50">
                 <td className="py-2 px-3 font-medium text-gray-900">Presented</td>
                 {weeklyData.map((week) => (
-                  <td key={week.week} className="text-center py-2 px-3">
+                  <td key={week.week} className="text-center py-1 px-2">
                     {week.presented?.toLocaleString() || '0'}
                   </td>
                 ))}
-                <td className="text-center py-2 px-3 font-semibold">
+                <td className="text-center py-1 px-2 font-semibold">
                   {data.callsPresented?.toLocaleString() || '1,858'}
                 </td>
               </tr>
-              
+
               <tr className="hover:bg-gray-50">
                 <td className="py-2 px-3 font-medium text-gray-900">Accepted</td>
                 {weeklyData.map((week) => (
-                  <td key={week.week} className="text-center py-2 px-3">
+                  <td key={week.week} className="text-center py-1 px-2">
                     {week.accepted?.toLocaleString() || '0'}
                   </td>
                 ))}
-                <td className="text-center py-2 px-3 font-semibold">
+                <td className="text-center py-1 px-2 font-semibold">
                   {data.callsAccepted?.toLocaleString() || '1,857'}
                 </td>
               </tr>
