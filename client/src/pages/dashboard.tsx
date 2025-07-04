@@ -76,40 +76,30 @@ export default function Dashboard() {
         ) : (
           dashboardData && (
             <div className="max-w-full mx-auto space-y-6" style={{ width: "1024px" }}>
-              {/* Brand Header - PPT Compatible */}
-              <Card className="shadow-lg border-0 bg-gradient-to-r from-blue-600 to-blue-700">
-                <CardContent className="p-6">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h2 className="text-3xl font-bold text-white">
-                        {dashboardData.brandName}
-                      </h2>
-                      <div className="flex items-center space-x-6 mt-2 text-sm text-blue-100">
-                        <span>{dashboardData.brandName} TARGET 007:19 105.00%</span>
-                        <span>{dashboardData.brandName} AHT {dashboardData.avgHandleTime} 103.78%</span>
-                      </div>
-                    </div>
-                    <Button variant="secondary" size="sm" className="bg-white text-blue-600 hover:bg-blue-50">
-                      <Download className="w-4 h-4 mr-2" />
-                      Export Report
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Metrics Grid */}
-              <MetricsGrid data={dashboardData} />
-
-              {/* Weekly Performance - Modern Vertical Layout */}
-              <WeeklyPerformanceModern data={dashboardData} />
-
-              {/* Experience & Satisfaction with Performance Chart */}
-              <div className="grid grid-cols-1 gap-6">
-                <ExperienceSatisfaction data={dashboardData} />
+              {/* Brand Header */}
+              <div className="text-left mb-6">
+                <h1 className="text-4xl font-bold text-gray-900 mb-2">{dashboardData.brandName}</h1>
+                <div className="flex items-center space-x-6 text-xs text-gray-600">
+                  <span>COLIBRI TARGET: 0:10:05 105.00%</span>
+                  <span>COLIBRI AHT: 0:09:56 103.52%</span>
+                </div>
               </div>
 
-              {/* Performance Chart */}
-              <PerformanceChart data={dashboardData} />
+              {/* Top Metrics Grid */}
+              <MetricsGrid data={dashboardData} />
+
+              {/* Main Content Grid */}
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                {/* Left Column - Experience & Satisfaction */}
+                <div className="lg:col-span-2">
+                  <ExperienceSatisfaction data={dashboardData} />
+                </div>
+
+                {/* Right Column - Weekly Table */}
+                <div className="lg:col-span-1">
+                  <WeeklyPerformanceModern data={dashboardData} />
+                </div>
+              </div>
             </div>
           )
         )}

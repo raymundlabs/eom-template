@@ -117,131 +117,125 @@ High Customer Satisfaction: CSAT remains strong at 82%, reflecting the team's su
 Seamless Customer Effort: With an 80% CES, customers overwhelmingly found the resolution process easy and straightforward.`;
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div className="space-y-6">
       {/* Overall Experience & Satisfaction */}
-      <Card className="shadow-lg border-0 bg-gradient-to-br from-blue-50 to-indigo-50">
-        <CardContent className="p-6">
-          <div className="flex items-center justify-between mb-6">
-            <h3 className="text-lg font-semibold text-gray-900">
-              Overall Experience & Satisfaction
-            </h3>
-          </div>
+      <Card className="shadow-lg border-0 bg-cyan-50">
+        <CardContent className="p-4">
+          <h3 className="text-base font-bold text-gray-900 mb-4 border-b-2 border-cyan-400 pb-1">
+            Overall Experience & Satisfaction:
+          </h3>
 
-          <div className="space-y-4">
+          <div className="space-y-3">
             {experienceMetrics.map((metric) => {
               const Icon = metric.icon;
               const isEditing = editingField === `experience_${metric.key}`;
               
               return (
-                <div key={metric.key} className={`p-4 rounded-lg ${metric.bgColor} border border-gray-100`}>
-                  <div className="flex items-start space-x-3">
-                    <div className={`w-8 h-8 rounded-full bg-white flex items-center justify-center ${metric.color}`}>
-                      <Icon className="w-4 h-4" />
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="flex items-center space-x-2">
-                          <span className="font-semibold text-gray-900">{metric.title}:</span>
-                          <span className={`font-bold ${metric.color}`}>{metric.percentage}%</span>
+                <div key={metric.key} className="flex items-start space-x-2">
+                  <div className="w-2 h-2 rounded-full bg-blue-600 mt-2 flex-shrink-0"></div>
+                  <div className="flex-1">
+                    {isEditing ? (
+                      <div className="space-y-2">
+                        <Textarea
+                          value={editingText}
+                          onChange={(e) => setEditingText(e.target.value)}
+                          className="min-h-[60px] text-sm"
+                        />
+                        <div className="flex space-x-2">
+                          <Button size="sm" onClick={handleSave}>
+                            <Save className="w-3 h-3 mr-1" />
+                            Save
+                          </Button>
+                          <Button variant="outline" size="sm" onClick={handleCancel}>
+                            <X className="w-3 h-3 mr-1" />
+                            Cancel
+                          </Button>
                         </div>
+                      </div>
+                    ) : (
+                      <div className="flex items-start justify-between">
+                        <p className="text-sm text-gray-700 leading-relaxed flex-1">{metric.text}</p>
                         <Button
                           variant="ghost"
                           size="sm"
                           onClick={() => handleEdit(`experience_${metric.key}`, metric.text)}
-                          className="h-6 w-6 p-0"
+                          className="h-6 w-6 p-0 ml-2 flex-shrink-0"
                         >
                           <Edit3 className="w-3 h-3" />
                         </Button>
                       </div>
-                      {isEditing ? (
-                        <div className="space-y-2">
-                          <Textarea
-                            value={editingText}
-                            onChange={(e) => setEditingText(e.target.value)}
-                            className="min-h-[60px] text-sm"
-                          />
-                          <div className="flex space-x-2">
-                            <Button size="sm" onClick={handleSave}>
-                              <Save className="w-3 h-3 mr-1" />
-                              Save
-                            </Button>
-                            <Button variant="outline" size="sm" onClick={handleCancel}>
-                              <X className="w-3 h-3 mr-1" />
-                              Cancel
-                            </Button>
-                          </div>
-                        </div>
-                      ) : (
-                        <p className="text-sm text-gray-700 leading-relaxed">{metric.text}</p>
-                      )}
-                    </div>
+                    )}
                   </div>
                 </div>
               );
             })}
           </div>
+        </CardContent>
+      </Card>
 
-          {/* Agent Attributes Section */}
-          <div className="mt-6 pt-6 border-t border-gray-200">
-            <h4 className="font-semibold text-gray-900 mb-4">Agent Attributes</h4>
-            <div className="space-y-3">
-              {agentAttributes.map((attr, index) => (
-                <div key={index} className="flex items-center justify-between py-2 px-3 rounded-lg bg-white border border-gray-100">
-                  <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 rounded-full bg-gray-400"></div>
-                    <span className="text-sm font-medium text-gray-700">{attr.title}:</span>
-                  </div>
-                  <span className={`text-sm font-bold ${attr.color}`}>
-                    {attr.percentage}% ({attr.responses} responses)
-                  </span>
+      {/* Agent Attributes */}
+      <Card className="shadow-lg border-0 bg-green-50">
+        <CardContent className="p-4">
+          <h3 className="text-base font-bold text-gray-900 mb-4 border-b-2 border-green-400 pb-1">
+            Agent Attributes:
+          </h3>
+          <div className="space-y-2">
+            {agentAttributes.map((attr, index) => (
+              <div key={index} className="flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 rounded-full bg-green-600"></div>
+                  <span className="text-sm font-medium text-gray-700">{attr.title}:</span>
                 </div>
-              ))}
-            </div>
+                <span className={`text-sm font-bold ${attr.color}`}>
+                  {attr.percentage}% ({attr.responses} responses)
+                </span>
+              </div>
+            ))}
           </div>
         </CardContent>
       </Card>
 
       {/* Wins Section */}
-      <Card className="shadow-lg border-0 bg-gradient-to-br from-green-50 to-emerald-50">
-        <CardContent className="p-6">
-          <div className="flex items-center justify-between mb-6">
-            <h3 className="text-lg font-semibold text-gray-900">Wins & Analysis</h3>
+      <Card className="shadow-lg border-0 bg-blue-50">
+        <CardContent className="p-4">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-base font-bold text-gray-900 border-b-2 border-blue-400 pb-1">Wins</h3>
             <Button
               variant="ghost"
               size="sm"
               onClick={() => handleEdit('wins', winsText)}
               className="flex items-center space-x-1"
             >
-              <Edit3 className="w-4 h-4" />
-              <span>Edit</span>
+              <Edit3 className="w-3 h-3" />
+              <span className="text-xs">Edit</span>
             </Button>
           </div>
 
           {editingField === 'wins' ? (
-            <div className="space-y-4">
+            <div className="space-y-3">
               <Textarea
                 value={editingText}
                 onChange={(e) => setEditingText(e.target.value)}
-                rows={12}
-                className="resize-none"
+                rows={8}
+                className="resize-none text-sm"
                 placeholder="Enter your performance analysis, wins, and insights..."
               />
               <div className="flex space-x-2">
-                <Button onClick={handleSave}>
-                  <Save className="w-4 h-4 mr-2" />
-                  Save Changes
+                <Button size="sm" onClick={handleSave}>
+                  <Save className="w-3 h-3 mr-1" />
+                  Save
                 </Button>
-                <Button variant="outline" onClick={handleCancel}>
-                  <X className="w-4 h-4 mr-2" />
+                <Button variant="outline" size="sm" onClick={handleCancel}>
+                  <X className="w-3 h-3 mr-1" />
                   Cancel
                 </Button>
               </div>
             </div>
           ) : (
-            <div className="space-y-4">
+            <div className="space-y-3">
               {winsText.split('\n\n').map((paragraph, index) => (
-                <div key={index} className="flex items-start space-x-3">
-                  <div className="w-2 h-2 rounded-full bg-green-500 mt-2 flex-shrink-0"></div>
+                <div key={index} className="flex items-start space-x-2">
+                  <div className="w-2 h-2 rounded-full bg-blue-600 mt-2 flex-shrink-0"></div>
                   <p className="text-sm text-gray-700 leading-relaxed">{paragraph.trim()}</p>
                 </div>
               ))}
