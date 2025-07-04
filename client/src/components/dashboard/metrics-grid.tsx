@@ -11,7 +11,7 @@ export function MetricsGrid({ data }: MetricsGridProps) {
   return (
     <>
       {/* Key Metrics Grid - PPT Compatible Layout */}
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
         {/* Handle Time Card */}
         <Card className="shadow-lg border-0 bg-gradient-to-br from-blue-50 to-blue-100">
           <CardContent className="p-4">
@@ -168,7 +168,7 @@ export function MetricsGrid({ data }: MetricsGridProps) {
       </div>
 
       {/* Operational Metrics - PPT Compatible */}
-      <div className="grid grid-cols-5 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
         <Card className="shadow-lg border-0">
           <CardContent className="p-4">
             <div className="text-xs font-medium text-gray-600 mb-2 border-b-2 border-purple pb-2">
