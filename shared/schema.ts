@@ -19,6 +19,7 @@ export const kpiData = pgTable("kpi_data", {
   cesResponses: integer("ces_responses"),
   fcrScore: real("fcr_score"),
   perfectScores: real("perfect_scores"),
+  overallExperience: text("overall_experience"),
   
   // Agent Attributes
   agentFriendly: real("agent_friendly"),

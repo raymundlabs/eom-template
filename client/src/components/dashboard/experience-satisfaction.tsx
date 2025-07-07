@@ -16,7 +16,11 @@ export function ExperienceSatisfaction({ data, onUpdate }: ExperienceSatisfactio
 
   const handleEdit = (field: string, currentText: string) => {
     setEditingField(field);
-    setEditingText(currentText);
+    // If the field is overallExperience and it's empty, use a default template
+    const defaultTemplate = field === 'overallExperience' && !currentText.trim() 
+      ? '• Key achievement 1\n• Key achievement 2\n• Area for improvement' 
+      : currentText;
+    setEditingText(defaultTemplate);
   };
 
   const handleSave = () => {
@@ -33,56 +37,8 @@ export function ExperienceSatisfaction({ data, onUpdate }: ExperienceSatisfactio
   };
 
   const experienceMetrics = [
-    {
-      key: "acx",
-      title: "ACX",
-      percentage: data.acxScore,
-      responses: data.acxResponses,
-      text: `We achieved ${data.acxScore}% based on ${data.acxResponses} responses, showing that customers strongly agree that agents are knowledgeable, friendly, and communicate effectively.`,
-      icon: Star,
-      color: "text-blue-600",
-      bgColor: "bg-blue-50"
-    },
-    {
-      key: "csat",
-      title: "CSAT",
-      percentage: data.csatScore,
-      responses: data.csatResponses,
-      text: `Our score stands at ${data.csatScore}% based on ${data.csatResponses} responses, indicating a vast majority of customers left satisfied or very satisfied.`,
-      icon: Users,
-      color: "text-green-600",
-      bgColor: "bg-green-50"
-    },
-    {
-      key: "ces",
-      title: "CES",
-      percentage: data.cesScore || 80,
-      responses: data.cesResponses || 716,
-      text: `We scored ${data.cesScore || 80}% based on ${data.cesResponses || 716} responses, reflecting that customers found it easy to resolve their matter.`,
-      icon: TrendingUp,
-      color: "text-purple-600",
-      bgColor: "bg-purple-50"
-    },
-    {
-      key: "fcr",
-      title: "FCR",
-      percentage: data.fcrScore || 83,
-      responses: 776,
-      text: `At ${data.fcrScore || 83}% (based on 776 responses), more than 8 out of 10 issues were successfully resolved on the first contact.`,
-      icon: Target,
-      color: "text-orange-600",
-      bgColor: "bg-orange-50"
-    },
-    {
-      key: "perfect",
-      title: "Perfect Scores",
-      percentage: data.perfectScores || 71,
-      responses: null,
-      text: `${data.perfectScores || 71}% of interactions received a perfect ACX score, demonstrating a high level of excellence in service delivery.`,
-      icon: CheckCircle,
-      color: "text-emerald-600",
-      bgColor: "bg-emerald-50"
-    }
+   
+
   ];
 
   const agentAttributes = [
@@ -117,85 +73,24 @@ High Customer Satisfaction: CSAT remains strong at 82%, reflecting the team's su
 Seamless Customer Effort: With an 80% CES, customers overwhelmingly found the resolution process easy and straightforward.`;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-2 h-full overflow-y-auto pr-1">
       {/* Overall Experience & Satisfaction */}
-      <Card className="shadow-lg border-0 bg-cyan-50">
-        <CardContent className="p-4">
-          <h3 className="text-sm font-bold text-gray-900 mb-3 border-b-2 border-cyan-400 pb-1">
-            Overall Experience & Satisfaction:
-          </h3>
-
-          <div className="space-y-3">
-            {experienceMetrics.map((metric) => {
-              const Icon = metric.icon;
-              const isEditing = editingField === `experience_${metric.key}`;
-              
-              return (
-                <div key={metric.key} className="flex items-start space-x-2">
-                  <div className="w-2 h-2 rounded-full bg-blue-600 mt-2 flex-shrink-0"></div>
-                  <div className="flex-1">
-                    {isEditing ? (
-                      <div className="space-y-2">
-                        <Textarea
-                          value={editingText}
-                          onChange={(e) => setEditingText(e.target.value)}
-                          className="min-h-[60px] text-sm"
-                        />
-                        <div className="flex space-x-2">
-                          <Button size="sm" onClick={handleSave}>
-                            <Save className="w-3 h-3 mr-1" />
-                            Save
-                          </Button>
-                          <Button variant="outline" size="sm" onClick={handleCancel}>
-                            <X className="w-3 h-3 mr-1" />
-                            Cancel
-                          </Button>
-                        </div>
-                      </div>
-                    ) : (
-                      <div className="flex items-start justify-between">
-                        <p className="text-xs text-gray-700 leading-relaxed flex-1">{metric.text}</p>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => handleEdit(`experience_${metric.key}`, metric.text)}
-                          className="h-6 w-6 p-0 ml-2 flex-shrink-0"
-                        >
-                          <Edit3 className="w-3 h-3" />
-                        </Button>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </CardContent>
-      </Card>
-      {/* Wins Section */}
-      <Card className="shadow-lg border-0 bg-blue-50">
-        <CardContent className="p-4">
-          <div className="flex items-center justify-between mb-3">
-            <h3 className="text-sm font-bold text-gray-900 border-b-2 border-blue-400 pb-1">Wins</h3>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => handleEdit('wins', winsText)}
-              className="flex items-center space-x-1"
-            >
-              <Edit3 className="w-3 h-3" />
-              <span className="text-xs">Edit</span>
-            </Button>
+      <Card className="shadow-sm border-0 bg-cyan-50">
+        <CardContent className="p-2">
+          <div className="mb-2">
+            <h3 className="text-sm font-bold text-gray-900 border-b border-cyan-400 pb-1">
+              Overall Experience & Satisfaction Analysis
+            </h3>
           </div>
 
-          {editingField === 'wins' ? (
+          {editingField === 'overallExperience' ? (
             <div className="space-y-3">
               <Textarea
                 value={editingText}
                 onChange={(e) => setEditingText(e.target.value)}
-                rows={8}
-                className="resize-none text-sm"
-                placeholder="Enter your performance analysis, wins, and insights..."
+                rows={6}
+                className="text-sm"
+                placeholder="Enter your analysis of the overall experience and satisfaction metrics...\n• Start each point with a bullet (•) for better formatting\n• Use new lines to separate bullet points"
               />
               <div className="flex space-x-2">
                 <Button size="sm" onClick={handleSave}>
@@ -208,16 +103,46 @@ Seamless Customer Effort: With an 80% CES, customers overwhelmingly found the re
                 </Button>
               </div>
             </div>
-          ) : (
-            <div className="space-y-3">
-              {winsText.split('\n\n').map((paragraph, index) => (
-                <div key={index} className="flex items-start space-x-2">
-                  <div className="w-2 h-2 rounded-full bg-blue-600 mt-2 flex-shrink-0"></div>
-                  <p className="text-xs text-gray-700 leading-relaxed">{paragraph.trim()}</p>
+          ) : data.overallExperience ? (
+            <div className="space-y-1">
+              {data.overallExperience.split('\n').filter(line => line.trim()).map((line, index) => (
+                <div key={index} className="flex items-start space-x-1">
+                  <div className="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 flex-shrink-0"></div>
+                  <p className="text-sm text-gray-700">{line.trim()}</p>
                 </div>
               ))}
             </div>
+          ) : (
+            <p className="text-sm text-gray-500 italic">No analysis provided. Click Edit to add your analysis.</p>
           )}
+
+          <div className="mt-4 space-y-1">
+            {experienceMetrics.map((metric) => {
+              const Icon = metric.icon;
+              return (
+                <div key={metric.key} className="flex items-start space-x-1">
+                  <div className="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 flex-shrink-0"></div>
+                  <p className="text-sm text-gray-700">{metric.text}</p>
+                </div>
+              );
+            })}
+          </div>
+        </CardContent>
+      </Card>
+      {/* Wins Section */}
+      <Card className="shadow-sm border-0 bg-blue-50">
+        <CardContent className="p-2">
+          <div className="mb-2">
+            <h3 className="text-sm font-bold text-gray-900 border-b border-blue-400 pb-1">Wins</h3>
+          </div>
+          <div className="space-y-1">
+            {winsText.split('\n\n').map((paragraph, index) => (
+              <div key={index} className="flex items-start space-x-1">
+                <div className="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 flex-shrink-0"></div>
+                <p className="text-sm text-gray-700 leading-tight">{paragraph.trim()}</p>
+              </div>
+            ))}
+          </div>
         </CardContent>
       </Card>
     </div>
