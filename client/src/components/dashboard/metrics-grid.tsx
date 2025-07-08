@@ -1,148 +1,154 @@
+import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { CircularProgress } from "./circular-progress";
-import { Clock, Phone } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Clock, Phone, Star, BookOpen, MessageSquare, Smile, CheckCircle, Zap } from "lucide-react";
 import type { KpiData } from "@shared/schema";
 
 interface MetricsGridProps {
   data: KpiData;
+  onDataChange?: (field: string, value: string | number) => void;
 }
 
-export function MetricsGrid({ data }: MetricsGridProps) {
+interface MetricCardProps {
+  title: string;
+  value: string | number;
+  field: string;
+  icon: React.ReactNode;
+  bgColor: string;
+  onValueChange: (field: string, value: string) => void;
+}
+
+const MetricCard = ({ title, value, field, icon, bgColor, onValueChange }: MetricCardProps) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [inputValue, setInputValue] = useState(String(value));
+
+  const handleBlur = () => {
+    setIsEditing(false);
+    if (inputValue !== String(value)) {
+      onValueChange(field, inputValue);
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      e.currentTarget.blur();
+    }
+  };
+
   return (
-    <>
-      {/* Key Metrics Grid - Compact Layout */}
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-2">
-        {/* Handle Time Card */}
-        <Card className="shadow-md border-0 bg-gradient-to-br from-blue-50 to-blue-100">
-          <CardContent className="p-2">
-            <div className="flex items-center space-x-1 mb-1">
-              <div className="w-4 h-4 bg-primary rounded flex items-center justify-center">
-                <Clock className="w-2 h-2 text-white" />
-              </div>
-              <div className="text-base font-medium text-gray-700">
-                AHT              </div>
-            </div>
-            <div className="text-2xl font-bold text-gray-900">
-              {data.avgHandleTime}
-            </div>
-          </CardContent>
-        </Card>
+    <Card className={`border-0 shadow-sm ${bgColor} hover:shadow-md transition-shadow`}>
+      <CardContent className="p-3">
+        <div className="flex items-center justify-between mb-1">
+          <div className="flex items-center space-x-2">
+            {icon}
+            <span className="text-xs font-medium text-gray-700">{title}</span>
+          </div>
+        </div>
+        {isEditing ? (
+          <Input
+            autoFocus
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            onBlur={handleBlur}
+            onKeyDown={handleKeyDown}
+            className="h-8 text-sm p-1 bg-white/50 border border-gray-300"
+          />
+        ) : (
+          <div 
+            className="text-xl font-semibold text-gray-900 cursor-text py-1 px-1 -mx-1 rounded hover:bg-white/30"
+            onClick={() => setIsEditing(true)}
+          >
+            {value}
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  );
+};
 
-        {/* Hold Time Card */}
-        <Card className="shadow-md border-0 bg-gradient-to-br from-green-50 to-green-100">
-          <CardContent className="p-2">
-            <div className="flex items-center space-x-1 mb-1">
-              <div className="w-4 h-4 bg-success rounded flex items-center justify-center">
-                <Phone className="w-2 h-2 text-white" />
-              </div>
-              <div className="text-base font-medium text-gray-700">
-                AVG HOLD TIME
-              </div>
-            </div>
-            <div className="text-2xl font-bold text-gray-900">
-              {data.avgHoldTime}
-            </div>
-          </CardContent>
-        </Card>
+export function MetricsGrid({ data, onDataChange }: MetricsGridProps) {
+  const [localData, setLocalData] = useState(data);
 
-        {/* CSAT Score */}
-        <Card className="shadow-md border-0 bg-gradient-to-br from-blue-50 to-blue-100">
-          <CardContent className="p-2">
-            <div className="flex items-center justify-between">
-              <div>
-                <div className="text-base font-medium text-gray-700 mb-1">
-                  CSAT (%)
-                </div>
-              </div>
-              <div className="w-full text-center font-extrabold text-3xl" style={{ color: 'var(--primary)' }}>
-                {`${((data.csatScore / 5) * 100).toFixed(1)}%`}
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+  const handleValueChange = (field: string, value: string) => {
+    const newData = { ...localData, [field]: value };
+    setLocalData(newData);
+    if (onDataChange) {
+      onDataChange(field, value);
+    }
+  };
 
-        {/* Knowledge Score */}
-        <Card className="shadow-md border-0 bg-gradient-to-br from-green-50 to-green-100">
-          <CardContent className="p-2">
-            <div className="flex items-center justify-between">
-              <div>
-                <div className="text-base font-medium text-gray-700 mb-1">
-                  Knowledge (%)
-                </div>
-              </div>
-              <div className="w-full text-center font-extrabold text-3xl" style={{ color: 'var(--success)' }}>
-                {`${data.agentKnowledgeable || 0}%`}
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+  const metrics = [
+    {
+      title: 'AHT',
+      value: localData.avgHandleTime || '0:00',
+      field: 'avgHandleTime',
+      icon: <Clock className="w-3 h-3 text-blue-600" />,
+      bgColor: 'bg-blue-50',
+    },
+    {
+      title: 'AVG HOLD TIME',
+      value: localData.avgHoldTime || '0:00',
+      field: 'avgHoldTime',
+      icon: <Phone className="w-3 h-3 text-green-600" />,
+      bgColor: 'bg-green-50',
+    },
+    {
+      title: 'CSAT (%)',
+      value: localData.csatScore ? `${localData.csatScore}%` : '0%',
+      field: 'csatScore',
+      icon: <Star className="w-3 h-3 text-blue-600" />,
+      bgColor: 'bg-blue-50',
+    },
+    {
+      title: 'Knowledge (%)',
+      value: localData.agentKnowledgeable ? `${localData.agentKnowledgeable}%` : '0%',
+      field: 'agentKnowledgeable',
+      icon: <BookOpen className="w-3 h-3 text-green-600" />,
+      bgColor: 'bg-green-50',
+    },
+    {
+      title: 'ACX (%)',
+      value: localData.acxScore ? `${localData.acxScore}%` : '0%',
+      field: 'acxScore',
+      icon: <Zap className="w-3 h-3 text-red-600" />,
+      bgColor: 'bg-red-50',
+    },
+    {
+      title: 'COMM (%)',
+      value: localData.agentCommunicated ? `${localData.agentCommunicated}%` : '0%',
+      field: 'agentCommunicated',
+      icon: <MessageSquare className="w-3 h-3 text-yellow-600" />,
+      bgColor: 'bg-yellow-50',
+    },
+    {
+      title: 'Friendliness (%)',
+      value: localData.agentFriendly ? `${localData.agentFriendly}%` : '0%',
+      field: 'agentFriendly',
+      icon: <Smile className="w-3 h-3 text-purple-600" />,
+      bgColor: 'bg-purple-50',
+    },
+    {
+      title: 'FCR (%)',
+      value: localData.fcrScore ? `${localData.fcrScore}%` : '0%',
+      field: 'fcrScore',
+      icon: <CheckCircle className="w-3 h-3 text-orange-600" />,
+      bgColor: 'bg-orange-50',
+    },
+  ];
 
-        {/* ACX Score */}
-        <Card className="shadow-md border-0 bg-gradient-to-br from-red-50 to-red-100">
-          <CardContent className="p-2">
-            <div className="flex items-center justify-between">
-              <div>
-                <div className="text-base font-medium text-gray-700 mb-1">
-                  ACX (%)
-                </div>
-              </div>
-              <div className="w-full text-center font-extrabold text-3xl" style={{ color: 'var(--danger)' }}>
-                {`${data.acxScore}%`}
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* COMM Score */}
-        <Card className="shadow-md border-0 bg-gradient-to-br from-yellow-50 to-yellow-100">
-          <CardContent className="p-2">
-            <div className="flex items-center justify-between">
-              <div>
-                <div className="text-base font-medium text-gray-700 mb-1">
-                  COMM (%)
-                </div>
-              </div>
-              <div className="w-full text-center font-extrabold text-3xl" style={{ color: 'var(--warning)' }}>
-                {`${data.agentCommunicated || 0}%`}
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Friendliness Score */}
-        <Card className="shadow-md border-0 bg-gradient-to-br from-purple-50 to-purple-100">
-          <CardContent className="p-2">
-            <div className="flex items-center justify-between">
-              <div>
-                <div className="text-base font-medium text-gray-700 mb-1">
-                  Friendliness (%)
-                </div>
-              </div>
-              <div className="w-full text-center font-extrabold text-3xl" style={{ color: 'var(--purple)' }}>
-                {`${data.agentFriendly || 0}%`}
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* FCR Score */}
-        <Card className="shadow-md border-0 bg-gradient-to-br from-orange-50 to-orange-100">
-          <CardContent className="p-2">
-            <div className="flex items-center justify-between">
-              <div>
-                <div className="text-base font-medium text-gray-700 mb-1">
-                  FCR (%)
-                </div>
-              </div>
-              <div className="w-full text-center font-extrabold text-3xl" style={{ color: 'var(--orange)' }}>
-                {`${data.fcrScore || 0}%`}
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Operational Metrics - Compact */}
-    </>
+  return (
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-2 mb-4">
+      {metrics.map((metric, index) => (
+        <MetricCard
+          key={index}
+          title={metric.title}
+          value={metric.value}
+          field={metric.field}
+          icon={metric.icon}
+          bgColor={metric.bgColor}
+          onValueChange={handleValueChange}
+        />
+      ))}
+    </div>
   );
 }

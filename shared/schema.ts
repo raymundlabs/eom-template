@@ -53,6 +53,7 @@ export const weeklyEntrySchema = z.object({
   comm: z.number(),
   knowledge: z.number(),
   acx: z.number(),
+  count: z.number().default(0),
   adherence: z.string().optional(),
 });
 

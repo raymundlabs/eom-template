@@ -41,19 +41,19 @@ export function WeeklyTable({ data }: WeeklyTableProps) {
                   Quality
                 </th>
                 <th className="text-left py-3 px-4 font-medium text-gray-700">
-                  CSAT
+                  FCR
                 </th>
                 <th className="text-left py-3 px-4 font-medium text-gray-700">
-                  COMM
+                  Perfect Score
                 </th>
                 <th className="text-left py-3 px-4 font-medium text-gray-700">
-                  Knowledge
+                  Count
                 </th>
                 <th className="text-left py-3 px-4 font-medium text-gray-700">
-                  ACX
+                Adherence
                 </th>
                 <th className="text-left py-3 px-4 font-medium text-gray-700">
-                  Adherence
+                  Adherence1
                 </th>
               </tr>
             </thead>

@@ -30,14 +30,16 @@ export function PerformanceChart({ data }: PerformanceChartProps) {
   ];
 
   return (
-    <Card>
-      <CardContent className="p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-2">
-          Performancwe Trend
-        </h3>
-        <p className="text-sm text-gray-600 mb-6">
-          Monthly performance tracking
-        </p>
+    <Card className="border border-gray-200 bg-white">
+      <CardContent className="p-5">
+        <div className="mb-6">
+          <h3 className="text-base font-semibold text-gray-800">
+            Performance Trend
+          </h3>
+          <p className="text-sm text-gray-500 mt-1">
+            Monthly performance tracking and analysis
+          </p>
+        </div>
 
         <div className="h-80">
           <ResponsiveContainer width="100%" height="100%">
@@ -46,34 +48,44 @@ export function PerformanceChart({ data }: PerformanceChartProps) {
                 dataKey="month"
                 axisLine={false}
                 tickLine={false}
-                tick={{ fontSize: 12, fill: "#6B7280" }}
+                tick={{ fontSize: 11, fill: "#6b7280", fontFamily: "Inter, system-ui, sans-serif" }}
               />
               <YAxis
                 domain={[0, 100]}
                 axisLine={false}
                 tickLine={false}
-                tick={{ fontSize: 12, fill: "#6B7280" }}
+                tick={{ fontSize: 11, fill: "#6b7280", fontFamily: "Inter, system-ui, sans-serif" }}
                 tickFormatter={(value) => `${value}`}
               />
               <Tooltip
                 contentStyle={{
                   backgroundColor: "white",
-                  border: "1px solid #E5E7EB",
-                  borderRadius: "8px",
-                  boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
+                  border: "1px solid #e5e7eb",
+                  borderRadius: "0.375rem",
+                  boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1)",
+                  fontSize: "0.875rem",
+                  padding: "0.5rem 0.75rem"
                 }}
+                labelStyle={{ fontWeight: 500, color: "#1f2937" }}
+                itemStyle={{ color: "#4b5563" }}
               />
               <Line
                 type="monotone"
                 dataKey="performance"
-                stroke="hsl(221, 83%, 53%)"
+                stroke="#2563eb"
                 strokeWidth={2}
-                dot={{ fill: "hsl(221, 83%, 53%)", strokeWidth: 0, r: 4 }}
+                dot={{
+                  fill: "#2563eb",
+                  stroke: "#fff",
+                  strokeWidth: 2,
+                  r: 4,
+                  fillOpacity: 1
+                }}
                 activeDot={{
                   r: 6,
-                  stroke: "hsl(221, 83%, 53%)",
+                  stroke: "#2563eb",
                   strokeWidth: 2,
-                  fill: "white",
+                  fill: "#fff",
                 }}
               />
             </LineChart>

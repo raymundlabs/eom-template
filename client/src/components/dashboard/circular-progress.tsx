@@ -19,30 +19,64 @@ export function CircularProgress({
   const strokeDashoffset = circumference - (circumference * percentage) / 100;
 
   return (
-    <div className="relative" style={{ width: size, height: size, padding: 2 }}>
-      <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} className="transform -rotate-90">
+    <div className="relative flex flex-col items-center" style={{ width: size, height: size }}>
+      <svg 
+        width={size} 
+        height={size} 
+        viewBox={`0 0 ${size} ${size}`} 
+        className="transform -rotate-90"
+      >
+        {/* Background circle */}
         <circle
           cx={size / 2}
           cy={size / 2}
           r={radius}
-          stroke="#e5e7eb"
-          strokeWidth="10"
+          stroke="#f3f4f6"
+          strokeWidth="8"
           fill="none"
+          className="transition-colors duration-200"
         />
+        {/* Progress circle */}
         <circle
           cx={size / 2}
           cy={size / 2}
           r={radius}
           stroke={color}
-          strokeWidth="10"
+          strokeWidth="8"
+          strokeLinecap="round"
           fill="none"
           strokeDasharray={circumference}
           strokeDashoffset={strokeDashoffset}
-          className="transition-all duration-300 ease-in-out"
+          className="transition-all duration-500 ease-in-out"
+          style={{
+            filter: 'drop-shadow(0 0 2px rgba(59, 130, 246, 0.3))'
+          }}
         />
       </svg>
-      <div className="w-full text-center font-bold mt-1" style={{ color, fontSize: size * 0.32 }}>
-        {label}
+      {/* Label */}
+      {label && (
+        <div 
+          className="absolute inset-0 flex items-center justify-center"
+          style={{
+            fontSize: size * 0.24,
+            fontWeight: 600,
+            color: '#1f2937',
+            lineHeight: 1
+          }}
+        >
+          {label}
+        </div>
+      )}
+      {/* Percentage */}
+      <div 
+        className="absolute -bottom-5 w-full text-center font-medium"
+        style={{
+          color,
+          fontSize: size * 0.14,
+          fontWeight: 600
+        }}
+      >
+        {Math.round(percentage)}%
       </div>
     </div>
   );
